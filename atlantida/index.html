@@ -324,8 +324,8 @@ const CAL=window.CBC_CAL||{updated:"2026-11-24",busy:[]};
 const UPDATED=CAL.updated;
 const BUSY=CAL.busy;
 const MAXG=8;
-const MINN={"12":2};
-const minFor=k=>MINN[k.slice(5,7)]||1;
+const GAP={};
+const minFor=k=>{const m=k.slice(5,7);if(m==="01"||m==="02"||m==="03"){const g=GAP[k]||0;return g>=6?5:g===5?4:2}if(m==="12")return 2;return 1};
 const LAST="2027-10-31";
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,"0");
@@ -336,7 +336,7 @@ const busy=new Set();
 const CLOSED=[["2027-01-19","2027-01-21"]];
 for(const[s,e]of BUSY.concat(CLOSED)){for(let d=parse(s);key(d)<e;d=addD(d,1))busy.add(key(d))}
 const now=new Date();const today=key(new Date(now.getFullYear(),now.getMonth(),now.getDate()));
-{let gap=[];const flush=()=>{if(gap.length&&gap.length<minFor(gap[0]))gap.forEach(k=>busy.add(k));gap=[]};
+{let gap=[];const flush=()=>{gap.forEach(k=>GAP[k]=gap.length);if(gap.length&&gap.length<minFor(gap[0]))gap.forEach(k=>busy.add(k));gap=[]};
 for(let d=parse(today);key(d)<=LAST;d=addD(d,1)){const k=key(d);if(busy.has(k))flush();else gap.push(k)}flush()}
 const fmt=s=>parse(s).toLocaleDateString("es-UY",{weekday:"short",day:"numeric",month:"short"});
 let view=new Date(now.getFullYear(),now.getMonth(),1);
