@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Bela Cembalo Reservas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday, quiet luxury: a refined coastal retreat, lots of air
+   IDEA a boutique hotel's booking card: fine rules, serif name, calm grid
+   PICTURE full-bleed dusk horizon over the sea at Atlántida, slim pine silhouettes, title set over the sky
+   COLOUR pure white ground, deep ink #0f1d24, sea-dusk gradient field, one coral accent #e2694f
+   TYPE Cormorant Garamond display + Manrope text
+   LAYOUT laptop: tall scene band with title lower-left, then calendar + request card; phone: stack */
+:root{--bg:#ffffff;--ink:#0f1d24;--soft:#66757b;--line:#e6eaec;--card:#ffffff;--tint:#f5f7f7;--sun:#e2694f;color-scheme:light;--busyink:#c3cbce;--sel:#0f1d24;--selink:#fff;--range:#eef2f3}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:light}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:20px;background:#ffffff}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Manrope",system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.05;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.band{padding-block:clamp(48px,7vw,104px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.wrap{max-width:1180px;margin:0 auto}
+header.hero{position:relative;color:#fff;min-height:min(100svh,920px);display:flex;align-items:flex-end;overflow:hidden;background:#13303d}
+.scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 40%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,29,36,0) 35%,rgba(15,29,36,.72) 100%),linear-gradient(90deg,rgba(15,29,36,.45),rgba(15,29,36,0) 60%)}
+.hero .wrap{position:relative;z-index:1;width:100%;max-width:none;margin:0}
+header.hero{padding-bottom:clamp(16px,2.4vw,32px);padding-left:max(2.5vw,16px)}
+.hero h1{font-size:clamp(46px,7vw,84px);font-weight:500}
+.logo{display:inline-flex;flex-direction:column;align-items:center;font-weight:400;width:clamp(280px,50vw,640px)}
+.logo img{display:block;width:100%;height:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.35))}
+.logo .casa{font:300 clamp(15px,1.6vw,20px)/1 "Manrope",sans-serif;letter-spacing:.55em;margin-right:-.55em;margin-bottom:4px}
+.logo .bela{font:400 clamp(60px,9vw,112px)/1 "Allura","Great Vibes",cursive;letter-spacing:0}
+.logo .place{align-self:flex-end;font:300 clamp(13px,1.4vw,17px)/1 "Manrope",sans-serif;letter-spacing:.45em;margin-right:-.45em;margin-top:clamp(0px,.3vw,4px)}
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;min-height:50px;padding:0 26px;border-radius:999px;background:#ffffff;color:#0f1d24;font:600 15px "Manrope",sans-serif;text-decoration:none;letter-spacing:.02em;transition:background .2s,color .2s}
+.cta:hover{background:var(--sun);color:#fff}
+.cta::after{content:"↓";font-size:16px}
+html{scroll-behavior:smooth}
+.hero p{margin:14px 0 0;color:rgba(255,255,255,.86);max-width:44ch;font-size:17px}
+.hero .where{display:block;font-size:14px;letter-spacing:.04em;color:rgba(255,255,255,.75);margin-bottom:10px}
+main{--bg:#ffffff;--ink:#0f1d24;--soft:#5a6266;--line:#d6c9b3;--card:#ffffff;--tint:#ddd0b9;--busyink:#a3988a;--sel:#0f1d24;--selink:#ffffff;--range:#d4c4a8;background:#e9dfcd;color:#0f1d24;color-scheme:light}
+main .panel{box-shadow:0 1px 2px rgba(15,29,36,.05),0 16px 40px -18px rgba(15,29,36,.22);border-color:#ebe4d8}
+.gal{background:#ffffff;padding-left:0;padding-right:0}
+.gal .wrap{padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:22px}
+.gal-head h2{font-size:clamp(32px,3.6vw,42px)}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin:-6px 0 20px;padding-bottom:4px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;min-height:40px;font-size:14px;font-weight:600}
+.tabs button[aria-selected=true]{background:#0f1d24;border-color:#0f1d24;color:#fff}
+.info{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(24px,4vw,56px);margin-top:clamp(32px,4vw,56px);align-items:start}
+@media(max-width:800px){.info{grid-template-columns:minmax(0,1fr)}}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#e2dccf;border:1px solid #e2dccf;border-radius:16px;overflow:hidden}
+.facts div{background:#fff;padding:18px 20px}
+.facts b{display:block;font:500 44px/1 "Cormorant Garamond",Georgia,serif}
+.facts span{font-size:14px;color:#5a6266}
+.desc p{margin:0 0 16px;font-size:17px}
+.rooms{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:6px;font-size:15px;color:#3d4549}
+.rooms b{color:#0f1d24;margin-right:8px}
+.amen{list-style:none;padding:0;margin:0 0 16px;display:flex;flex-wrap:wrap;gap:8px}
+.amen li{font-size:14px;padding:6px 14px;border:1px solid #e2dccf;border-radius:999px;background:#faf7f2}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(10em,1fr));gap:10px;margin:0 0 16px}
+.rules div{border:1px solid #e2dccf;border-radius:12px;padding:10px 14px}
+.rules small{display:block;font-size:13px;color:#5a6266}
+.rules b{font-size:15px;font-weight:600;white-space:nowrap}
+.rating{font-size:14px;color:#5a6266}
+.strip{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 max(5vw,16px) 8px;scroll-padding-left:max(5vw,16px);scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.strip figure{flex:none;margin:0;scroll-snap-align:start;position:relative;cursor:zoom-in}
+.strip img{display:block;height:clamp(260px,38vw,500px);width:auto;max-width:86vw;object-fit:cover;border-radius:14px}
+.strip figcaption{position:absolute;left:14px;bottom:12px;color:#fff;font-size:14px;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(8,14,18,.94);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;padding:16px}
+.lb[hidden]{display:none}
+.lb figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px;min-height:0}
+.lb img{max-width:100%;max-height:82vh;border-radius:10px;object-fit:contain}
+.lb figcaption{color:#fff;font-size:15px}
+.lb button{background:transparent;border-color:rgba(255,255,255,.3);color:#fff;width:48px;padding:0;font-size:24px}
+.lb button:hover{border-color:#fff}
+.lbx{position:absolute;top:16px;right:16px}
+@media(max-width:600px){.lb{grid-template-columns:minmax(0,1fr)}.lbn{position:absolute;bottom:24px}.lbp{left:calc(50% - 60px)}.lbnx{right:calc(50% - 60px)}}
+main .grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media(max-width:860px){main .grid{grid-template-columns:minmax(0,1fr)}}
+.cal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:22px;flex-wrap:wrap;padding-bottom:0}
+.cal-head h2{font-size:clamp(32px,3.6vw,42px)}
+.nav{display:flex;gap:8px}
+button,.btn{font:600 15px "Manrope",sans-serif;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);min-height:44px;padding:0 18px;cursor:pointer;transition:border-color .2s,background .2s}
+.nav button{width:44px;padding:0;font-size:20px;line-height:1}
+button:hover{border-color:var(--ink)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+button:disabled{opacity:.3;cursor:default}
+button:disabled:hover{border-color:var(--line)}
+.months{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,48px)}
+@media(max-width:600px){.months{grid-template-columns:minmax(0,1fr)}}
+.month h3{font-size:24px;margin-bottom:14px}
+.dow,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.days{row-gap:4px}
+.dow span{font-size:13px;color:var(--soft);text-align:center;padding-bottom:8px}
+.day{aspect-ratio:1/1;min-height:40px;border:0;border-radius:999px;padding:0;font:500 15px "Manrope",sans-serif;background:none;color:var(--ink);font-variant-numeric:tabular-nums;transition:background .15s}
+.day:not(:disabled):hover{background:var(--tint)}
+.day.blank{pointer-events:none}
+.day.past,.day.busy{color:var(--busyink);cursor:default}
+.day.busy{text-decoration:line-through;text-decoration-thickness:1px}
+.day.co{color:var(--ink)}
+.day.inr{background:var(--range);border-radius:0}
+.day.s,.day.e{background:var(--sel);color:var(--selink);opacity:1}
+.day.s:hover,.day.e:hover{background:var(--sel)}
+.legend{display:flex;flex-wrap:wrap;gap:20px;margin-top:24px;font-size:14px;color:var(--soft)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.lg{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:999px;font:500 13px "Manrope",sans-serif;color:var(--ink)}
+.lg.busy{color:var(--busyink);text-decoration:line-through}
+.lg.sel{background:var(--sel);color:var(--selink)}
+.lg.inr{background:var(--range);border-radius:0;margin-left:-8px}
+.hint{margin:12px 0 0;font-size:14px;color:var(--soft)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,2.6vw,32px);box-shadow:0 1px 2px rgba(15,29,36,.04),0 12px 32px -12px rgba(15,29,36,.12)}
+@media(min-width:861px){.panel{position:sticky;top:24px}}
+.panel h2{font-size:32px;margin-bottom:4px}
+.stay{display:grid;grid-template-columns:1fr 1fr;margin:18px 0 10px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stay div{padding:12px 14px}
+.stay div+div{border-left:1px solid var(--line)}
+.stay small{display:block;font-size:13px;color:var(--soft)}
+.stay b{font-size:17px;font-weight:600;white-space:nowrap}
+.nights{font-size:14px;color:var(--soft);margin:0 0 6px}
+label{display:block;font-size:13px;font-weight:600;color:var(--soft);margin:14px 0 6px}
+input,select,textarea{width:100%;font:16px "Manrope",sans-serif;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:46px;transition:border-color .2s}
+input:hover,select:hover,textarea:hover{border-color:var(--soft)}
+textarea{min-height:88px;resize:vertical}
+.row2{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:10px}
+.primary{background:var(--ink);border-color:var(--ink);color:var(--bg);width:100%;margin-top:20px;min-height:52px;font-size:16px}
+.primary:hover{background:var(--sun);border-color:var(--sun);color:#fff}
+.err{color:#c4321b;font-size:14px;margin:10px 0 0;min-height:1em}
+
+.done{display:none}
+.done.on{display:block}
+.msg{white-space:pre-wrap;background:#f5f7f7;border-radius:12px;padding:14px;font-size:14px;margin:14px 0}
+.acts{display:grid;gap:8px}
+.acts a{display:flex;align-items:center;justify-content:center;text-decoration:none}
+.abnb{display:flex;flex-direction:column;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid #e6eaec;font-size:14px;color:#5a6266}
+.abnbb{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:#ff385c;border-color:#ff385c;background:#fff}
+.wab{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;background:#25d366;border-color:#25d366;color:#0b2e17;margin-top:0;min-height:52px;font-size:16px}
+.wab:hover{background:#1ebe5a;border-color:#1ebe5a}
+.mailicon{width:18px;height:18px;flex:none}
+.waicon{width:20px;height:20px;flex:none}
+footer .waicon{width:18px;height:18px}
+.abicon{width:20px;height:20px;flex:none}
+footer .abicon{width:18px;height:18px}
+.abnbb:hover{background:#ff385c;color:#fff;border-color:#ff385c}
+.note{font-size:14px;color:var(--soft);margin:10px 0 0}
+.sec{background:#ffffff}
+.sec .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(24px,4vw,56px)}
+@media(max-width:760px){.sec .wrap{grid-template-columns:minmax(0,1fr)}}
+.sec h2{font-size:clamp(32px,3.6vw,44px)}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+@media(max-width:700px){.how{grid-template-columns:minmax(0,1fr)}}
+.how div{border-top:1px solid var(--ink);padding-top:14px}
+.how h3{font-size:24px;margin-bottom:8px}
+.how p{margin:0;color:var(--soft);font-size:15px}
+footer{background:#081014;color:rgba(255,255,255,.7);font-size:14px}
+.loc{background:#e9dfcd}
+.locw{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:32px}
+.locw>div{flex:1 1 280px}
+.loc h2{font-size:clamp(32px,3.6vw,42px);margin-bottom:8px}
+.loc p{margin:0;color:#5a6266;max-width:52ch}
+.locmap{display:block;width:min(564px,100%);height:auto;border-radius:16px;box-shadow:0 16px 40px -18px rgba(15,29,36,.35)}
+.locb{display:inline-flex;align-items:center;text-decoration:none;background:#0f1d24;color:#fff;border-color:#0f1d24;padding:0 24px;min-height:50px}
+.locb:hover{background:var(--sun);border-color:var(--sun)}
+footer .fgrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
+@media(max-width:700px){footer .fgrid{grid-template-columns:minmax(0,1fr)}}
+footer h4{margin:0 0 8px;font:600 13px "Manrope",sans-serif;letter-spacing:.12em;color:rgba(255,255,255,.55)}
+footer .fcol{font-size:15px;color:#fff;padding-top:8px}
+footer .fcol a{color:#fff;text-decoration:none;overflow-wrap:anywhere}
+footer .ig{display:inline-flex;align-items:center;gap:8px;margin-top:10px}
+footer .fcol a:hover{color:var(--sun)}
+footer .fbrand{display:inline-flex;flex-direction:column;align-items:center}
+footer .grupo{font-size:19px;font-weight:500;color:#fff;letter-spacing:.08em;margin-top:4px}
+footer .flogo{display:block;width:min(300px,70vw);height:auto;margin-bottom:8px}
+footer b{color:#fff;font:400 38px/1 "Allura",cursive;display:inline-flex;flex-direction:column;align-items:center;margin-bottom:6px}
+footer b small{font:300 11px/1 "Manrope",sans-serif;letter-spacing:.5em;margin-right:-.5em;margin-bottom:2px}
+@media(prefers-reduced-motion:no-preference){.glint{animation:glint 6s ease-in-out infinite alternate}}
+@keyframes glint{to{opacity:.35}}
+
+</style>
+</head>
+<body>
+<header class="hero band">
+  <img class="scene" src="hero.jpg" alt="Atardecer sobre el mar desde la terraza de Casa Bela Cembalo">
+  <div class="wrap">
+    <h1 class="logo"><img src="logo-oficial.svg" alt="Casa Bela Cembalo - Atlántida"></h1>
+    <p>Elegí tus fechas y enviá tu solicitud de reserva directa. Te confirmamos por mensaje.</p>
+    <a class="cta" href="#disponibilidad">Ver disponibilidad</a>
+  </div>
+</header>
+
+<section class="band gal" aria-labelledby="galt">
+  <div class="wrap">
+    <div class="gal-head">
+      <h2 id="galt">La casa</h2>
+      <div class="nav"><button id="gprev" type="button" aria-label="Fotos anteriores">‹</button><button id="gnext" type="button" aria-label="Fotos siguientes">›</button></div>
+    </div>
+  </div>
+  <div class="wrap"><div class="tabs" id="tabs" role="tablist" aria-label="Ambientes"></div></div>
+  <div class="strip" id="strip" tabindex="0" aria-label="Galería de fotos"></div>
+  <div class="wrap info">
+    <div class="facts">
+      <div><b>8</b><span>huéspedes</span></div>
+      <div><b>3</b><span>dormitorios</span></div>
+      <div><b>5</b><span>camas</span></div>
+      <div><b>2</b><span>baños</span></div>
+    </div>
+    <div class="desc">
+      <p>Casa entera, renovada, tranquila y céntrica, frente a Playa Brava y a pocos pasos de la rambla. Desde la terraza con vista al mar se ven los atardeceres. Está a unas 2 cuadras de la parada de ómnibus y a 8 del centro, que se recorre caminando.</p>
+      <ul class="rooms">
+        <li><b>Dormitorio 1</b> cama doble</li>
+        <li><b>Dormitorio 2</b> cama doble y cama individual</li>
+        <li><b>Dormitorio 3</b> cama doble y cama individual</li>
+        <li><b>Baños</b> uno en planta baja con lavarropas y secadora, y otro arriba, junto a la cocina y la terraza</li>
+      </ul>
+      <ul class="amen">
+        <li>Vista al mar</li><li>Acceso a la playa</li><li>Terraza privada</li><li>Parrillero</li><li>Ducha exterior</li><li>Aire acondicionado y calefacción</li><li>Wifi</li><li>Cocina equipada</li><li>Lavarropas y secadora</li><li>Estacionamiento para 3 autos</li>
+      </ul>
+      <div class="rules">
+        <div><small>Entrada</small><b>desde las 16:00</b></div>
+        <div><small>Salida</small><b>hasta las 10:00</b></div>
+        <div><small>Mascotas</small><b>No se permiten</b></div>
+        <div><small>Fiestas y eventos</small><b>No se permiten</b></div>
+      </div>
+      <p class="rating">4,78 de 5 en Airbnb, con 18 reseñas · Anfitriona Superhost</p>
+    </div>
+  </div>
+</section>
+<div class="lb" id="lb" hidden>
+  <button class="lbx" id="lbx" type="button" aria-label="Cerrar">×</button>
+  <button class="lbn lbp" id="lbp" type="button" aria-label="Anterior">‹</button>
+  <figure><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure>
+  <button class="lbn lbnx" id="lbnx" type="button" aria-label="Siguiente">›</button>
+</div>
+
+<main class="band">
+  <div class="wrap grid">
+    <section id="disponibilidad" aria-labelledby="calt">
+      <div class="cal-head">
+        <h2 id="calt">Disponibilidad</h2>
+        <div class="nav">
+          <button id="prev" type="button" aria-label="Meses anteriores">‹</button>
+          <button id="next" type="button" aria-label="Meses siguientes">›</button>
+        </div>
+      </div>
+      <div class="months" id="months"></div>
+      <div class="legend">
+        <span><b class="lg">12</b>Libre</span>
+        <span><b class="lg busy">12</b>Ocupado</span>
+        <span><b class="lg sel">12</b><b class="lg inr">13</b>Tu estadía</span>
+      </div>
+      <p class="hint">Tocá el día de llegada y después el de salida. El día de salida puede coincidir con la llegada de otro huésped. Calendario actualizado el <b id="upd"></b>.</p>
+    </section>
+
+    <aside class="panel" aria-labelledby="formt">
+      <form id="req" novalidate>
+        <h2 id="formt">Solicitar reserva</h2>
+        <div class="stay">
+          <div><small>Llegada</small><b id="ci">Elegí fecha</b></div>
+          <div><small>Salida</small><b id="co">Elegí fecha</b></div>
+        </div>
+        <p class="nights" id="nn">Todavía no elegiste fechas.</p>
+        <label for="fname">Nombre y apellido</label>
+        <input id="fname" autocomplete="name" required>
+        <div class="row2">
+          <div><label for="fphone">Teléfono / WhatsApp</label><input id="fphone" type="tel" autocomplete="tel" required></div>
+          <div><label for="fguests">Huéspedes</label><select id="fguests"></select></div>
+        </div>
+        <label for="femail">Email (opcional)</label>
+        <input id="femail" type="email" autocomplete="email">
+        <label for="fmsg">Mensaje (opcional)</label>
+        <textarea id="fmsg" placeholder="Hora estimada de llegada, consultas…"></textarea>
+        <button class="primary" type="submit">Preparar solicitud</button>
+        <p class="err" id="err" role="alert"></p>
+      </form>
+      <div class="abnb"><span>¿Preferís reservar con Airbnb?</span><a class="btn abnbb" href="https://www.airbnb.com/rooms/1327651047403152362" target="_blank" rel="noopener" aria-label="Reservar en Airbnb"><svg class="abicon" viewBox="60 10 312 332" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M120.500,337.431 C116.650,336.584 109.279,333.853 104.121,331.361 C96.361,327.612 93.340,325.420 86.621,318.665 C72.526,304.494 67.059,292.218 66.251,272.930 C65.449,253.792 67.460,248.122 97.791,184.000 C112.297,153.334 153.622,70.443 163.708,51.784 C171.189,37.944 177.225,30.368 185.444,24.503 C207.454,8.797 235.571,11.221 254.443,30.452 C258.324,34.407 263.657,41.304 266.293,45.780 C274.157,59.129 321.330,153.726 339.957,193.500 C358.861,233.865 364.309,246.678 366.081,254.944 C367.568,261.875 366.735,279.561 364.549,287.500 C355.356,320.884 322.956,342.683 289.207,338.189 C266.609,335.181 247.756,324.575 224.350,301.706 L216.200,293.743 L206.850,302.990 C189.354,320.293 171.321,331.683 154.500,336.055 C143.810,338.833 129.506,339.412 120.500,337.431 Z M148.000,317.443 C162.094,314.131 178.760,303.461 194.265,287.824 L203.029,278.984 L197.140,271.242 C185.109,255.425 174.493,237.466 169.110,223.827 C158.670,197.373 158.903,175.291 169.800,158.431 C182.177,139.281 207.070,129.920 230.760,135.506 C251.718,140.447 267.990,158.140 271.122,179.393 C274.662,203.412 262.660,235.682 238.009,268.427 L230.124,278.900 L241.080,289.398 C258.252,305.854 272.202,314.308 287.340,317.435 C296.737,319.376 300.759,319.381 308.907,317.460 C336.977,310.844 352.896,282.437 344.433,254.064 C340.344,240.352 293.737,142.256 262.729,82.098 C246.256,50.137 242.481,44.757 232.852,39.516 C228.539,37.168 225.967,36.535 219.342,36.187 C205.591,35.465 196.522,40.059 188.143,51.990 C179.173,64.763 103.869,217.410 91.865,247.152 C85.095,263.928 84.963,278.073 91.451,291.734 C95.382,300.012 102.648,307.954 110.500,312.556 C120.705,318.537 135.268,320.435 148.000,317.443 Z M218.660,259.250 C219.420,258.288 223.653,252.161 228.067,245.636 C237.559,231.604 242.915,221.277 247.222,208.703 C249.948,200.744 250.381,198.081 250.428,189.000 C250.473,180.196 250.123,177.720 248.262,173.670 C244.803,166.145 240.634,161.618 233.796,157.959 C228.272,155.004 226.396,154.543 218.500,154.200 C206.341,153.673 199.760,156.080 191.917,163.923 C184.756,171.084 182.541,177.054 182.612,189.000 C182.676,199.847 185.510,210.266 192.076,223.786 C198.324,236.652 214.509,261.000 216.814,261.000 C217.070,261.000 217.901,260.212 218.660,259.250 Z"/></svg>Reservar en Airbnb</a></div>
+      <div class="done" id="done">
+        <h2>Tu solicitud está lista</h2>
+        <p class="note">Enviala por WhatsApp o por email, o copiala. La reserva queda confirmada cuando te respondamos.</p>
+        <div class="msg" id="msgtxt"></div>
+        <div class="acts">
+          <a class="btn wab" id="wa" href="#" target="_blank" rel="noopener"><svg class="waicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>Enviar por WhatsApp</a>
+          <a class="btn" id="mail" href="#">Enviar por email</a>
+          <button type="button" id="copy">Copiar mensaje</button>
+          <button type="button" id="back">Cambiar datos</button>
+        </div>
+        <p class="note">WhatsApp: <b>+1 667 204 1266</b> · Email: <b>casabelacembalo@gmail.com</b></p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<section class="band sec">
+  <div class="wrap">
+    <h2>Cómo funciona la reserva directa</h2>
+    <div class="how">
+      <div><h3>Elegís las fechas</h3><p>El calendario muestra en gris las noches ya ocupadas, sumando las reservas de todos los canales.</p></div>
+      <div><h3>Nos mandás la solicitud</h3><p>Con tus datos y la cantidad de huéspedes. No se cobra nada en este paso.</p></div>
+      <div><h3>Te confirmamos</h3><p>Revisamos la disponibilidad, te pasamos el precio final y la forma de pago, y bloqueamos tus fechas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band loc" aria-labelledby="loct">
+  <div class="wrap locw">
+    <div><h2 id="loct">Ubicación</h2><p>Atlántida, Canelones, Uruguay. La dirección exacta te la enviamos al confirmar la reserva.</p></div>
+    <img class="locmap" src="mapa.jpg" alt="Mapa de Atlántida" width="564" height="414">
+  </div>
+</section>
+<footer class="band">
+  <div class="wrap fgrid">
+    <span class="fbrand"><img class="flogo" src="logo-oficial.svg" alt="Casa Bela Cembalo - Atlántida"><span class="grupo">Bela Cembalo Group</span></span>
+    <div class="fcol"><h4>Contacto</h4><a class="ig" href="mailto:casabelacembalo@gmail.com"><svg class="mailicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>casabelacembalo@gmail.com</a><br><a class="ig" href="https://wa.me/16672041266" target="_blank" rel="noopener"><svg class="waicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>+1 667 204 1266</a><br><a class="ig" href="https://www.airbnb.com/rooms/1327651047403152362" target="_blank" rel="noopener"><svg class="abicon" viewBox="60 10 312 332" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M120.500,337.431 C116.650,336.584 109.279,333.853 104.121,331.361 C96.361,327.612 93.340,325.420 86.621,318.665 C72.526,304.494 67.059,292.218 66.251,272.930 C65.449,253.792 67.460,248.122 97.791,184.000 C112.297,153.334 153.622,70.443 163.708,51.784 C171.189,37.944 177.225,30.368 185.444,24.503 C207.454,8.797 235.571,11.221 254.443,30.452 C258.324,34.407 263.657,41.304 266.293,45.780 C274.157,59.129 321.330,153.726 339.957,193.500 C358.861,233.865 364.309,246.678 366.081,254.944 C367.568,261.875 366.735,279.561 364.549,287.500 C355.356,320.884 322.956,342.683 289.207,338.189 C266.609,335.181 247.756,324.575 224.350,301.706 L216.200,293.743 L206.850,302.990 C189.354,320.293 171.321,331.683 154.500,336.055 C143.810,338.833 129.506,339.412 120.500,337.431 Z M148.000,317.443 C162.094,314.131 178.760,303.461 194.265,287.824 L203.029,278.984 L197.140,271.242 C185.109,255.425 174.493,237.466 169.110,223.827 C158.670,197.373 158.903,175.291 169.800,158.431 C182.177,139.281 207.070,129.920 230.760,135.506 C251.718,140.447 267.990,158.140 271.122,179.393 C274.662,203.412 262.660,235.682 238.009,268.427 L230.124,278.900 L241.080,289.398 C258.252,305.854 272.202,314.308 287.340,317.435 C296.737,319.376 300.759,319.381 308.907,317.460 C336.977,310.844 352.896,282.437 344.433,254.064 C340.344,240.352 293.737,142.256 262.729,82.098 C246.256,50.137 242.481,44.757 232.852,39.516 C228.539,37.168 225.967,36.535 219.342,36.187 C205.591,35.465 196.522,40.059 188.143,51.990 C179.173,64.763 103.869,217.410 91.865,247.152 C85.095,263.928 84.963,278.073 91.451,291.734 C95.382,300.012 102.648,307.954 110.500,312.556 C120.705,318.537 135.268,320.435 148.000,317.443 Z M218.660,259.250 C219.420,258.288 223.653,252.161 228.067,245.636 C237.559,231.604 242.915,221.277 247.222,208.703 C249.948,200.744 250.381,198.081 250.428,189.000 C250.473,180.196 250.123,177.720 248.262,173.670 C244.803,166.145 240.634,161.618 233.796,157.959 C228.272,155.004 226.396,154.543 218.500,154.200 C206.341,153.673 199.760,156.080 191.917,163.923 C184.756,171.084 182.541,177.054 182.612,189.000 C182.676,199.847 185.510,210.266 192.076,223.786 C198.324,236.652 214.509,261.000 216.814,261.000 C217.070,261.000 217.901,260.212 218.660,259.250 Z"/></svg>Ver en Airbnb</a><br><a class="ig" href="https://www.instagram.com/casabelacembalo.uy/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>@casabelacembalo.uy</a></div>
+    <div class="fcol"><h4>Ubicación</h4><span>Atlántida, Canelones<br>Uruguay</span></div>
+  </div>
+</footer>
+
+<script src="calendario.js"></script>
+<script>
+{
+const CAL=window.CBC_CAL||{updated:"2026-11-24",busy:[]};
+const UPDATED=CAL.updated;
+const BUSY=CAL.busy;
+const MAXG=8;
+const MINN={"12":2};
+const minFor=k=>MINN[k.slice(5,7)]||1;
+const LAST="2027-10-31";
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,"0");
+const key=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const parse=s=>{const[a,b,c]=s.split("-").map(Number);return new Date(a,b-1,c)};
+const addD=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);
+const busy=new Set();
+const CLOSED=[["2027-01-19","2027-01-21"]];
+for(const[s,e]of BUSY.concat(CLOSED)){for(let d=parse(s);key(d)<e;d=addD(d,1))busy.add(key(d))}
+const now=new Date();const today=key(new Date(now.getFullYear(),now.getMonth(),now.getDate()));
+{let gap=[];const flush=()=>{if(gap.length&&gap.length<minFor(gap[0]))gap.forEach(k=>busy.add(k));gap=[]};
+for(let d=parse(today);key(d)<=LAST;d=addD(d,1)){const k=key(d);if(busy.has(k))flush();else gap.push(k)}flush()}
+const fmt=s=>parse(s).toLocaleDateString("es-UY",{weekday:"short",day:"numeric",month:"short"});
+let view=new Date(now.getFullYear(),now.getMonth(),1);
+const first=new Date(view),lastM=new Date(parse(LAST).getFullYear(),parse(LAST).getMonth(),1);
+let ci=null,co=null;
+$("upd").textContent=parse(UPDATED).toLocaleDateString("es-UY",{day:"numeric",month:"long",year:"numeric"});
+$("fguests").innerHTML=Array.from({length:MAXG},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("");
+$("fguests").value="2";
+function freeRange(a,b){for(let d=parse(a);key(d)<b;d=addD(d,1)){if(busy.has(key(d)))return false}return true}
+function month(m){
+  const y=m.getFullYear(),mo=m.getMonth();
+  let name=m.toLocaleDateString("es-UY",{month:"long",year:"numeric"}).replace(" de "," ");name=name[0].toUpperCase()+name.slice(1);
+  const lead=(new Date(y,mo,1).getDay()+6)%7,len=new Date(y,mo+1,0).getDate();
+  let cells="";for(let i=0;i<lead;i++)cells+=`<span class="day blank"></span>`;
+  for(let i=1;i<=len;i++){
+    const k=y+"-"+pad(mo+1)+"-"+pad(i);
+    let c="day",dis=false,lab="libre";
+    if(k<today||k>LAST){c+=" past";dis=true;lab="no disponible"}
+    else if(co&&k===co){lab="tu salida"}
+    else if(busy.has(k)){
+      if(ci&&!co&&k>ci&&freeRange(ci,k)){c+=" co";lab="libre para salida"}
+      else{c+=" busy";dis=true;lab="ocupado"}
+    }
+    if(ci&&k===ci)c+=" s";
+    if(co&&k===co)c+=" e";
+    if(ci&&co&&k>ci&&k<co)c+=" inr";
+    cells+=`<button type="button" class="${c}" data-k="${k}" ${dis?"disabled":""} aria-label="${i} de ${name}, ${lab}">${i}</button>`;
+  }
+  return `<div class="month"><h3>${name}</h3><div class="dow"><span>lu</span><span>ma</span><span>mi</span><span>ju</span><span>vi</span><span>sá</span><span>do</span></div><div class="days">${cells}</div></div>`;
+}
+function render(){
+  const m2=new Date(view.getFullYear(),view.getMonth()+1,1);
+  $("months").innerHTML=month(view)+(m2<=lastM?month(m2):"");
+  $("prev").disabled=view<=first;
+  $("next").disabled=m2>=lastM;
+  $("ci").textContent=ci?fmt(ci):"Elegí fecha";
+  $("co").textContent=co?fmt(co):(ci?"Elegí salida":"Elegí fecha");
+  if(ci&&co){const n=Math.round((parse(co)-parse(ci))/864e5);$("nn").textContent=n+(n===1?" noche":" noches")}
+  else $("nn").textContent=ci?"Ahora tocá el día de salida.":"Todavía no elegiste fechas.";
+}
+$("months").addEventListener("click",e=>{
+  const b=e.target.closest("button.day");if(!b||b.disabled)return;
+  const k=b.dataset.k;$("err").textContent="";
+  if(!ci||co||k<=ci){if(busy.has(k))return;ci=k;co=null}
+  else if(freeRange(ci,k)&&Math.round((parse(k)-parse(ci))/864e5)<minFor(ci)){$("err").textContent="En esa fecha la estadía mínima es de "+minFor(ci)+" noches."}
+  else if(freeRange(ci,k))co=k;
+  else{ci=busy.has(k)?null:k;co=null;$("err").textContent="Hay noches ocupadas en ese rango. Elegí otras fechas."}
+  render();
+});
+$("prev").addEventListener("click",()=>{view=new Date(view.getFullYear(),view.getMonth()-1,1);render()});
+$("next").addEventListener("click",()=>{view=new Date(view.getFullYear(),view.getMonth()+1,1);render()});
+let text="";
+$("req").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=$("fname").value.trim(),phone=$("fphone").value.trim();
+  if(!ci||!co){$("err").textContent="Elegí las fechas de llegada y salida en el calendario.";return}
+  if(!name||!phone){$("err").textContent="Completá tu nombre y teléfono.";return}
+  const n=Math.round((parse(co)-parse(ci))/864e5);
+  const email=$("femail").value.trim(),msg=$("fmsg").value.trim();
+  text=`Solicitud de reserva directa - Casa Bela Cembalo\n\nLlegada: ${fmt(ci)} (${ci})\nSalida: ${fmt(co)} (${co})\nNoches: ${n}\nHuéspedes: ${$("fguests").value}\n\nNombre: ${name}\nTeléfono: ${phone}`+(email?`\nEmail: ${email}`:"")+(msg?`\n\nMensaje: ${msg}`:"");
+  $("msgtxt").textContent=text;
+  $("wa").href="https://wa.me/16672041266?text="+encodeURIComponent(text);
+  $("mail").href="mailto:casabelacembalo@gmail.com?subject="+encodeURIComponent(`Solicitud de reserva ${ci} a ${co}`)+"&body="+encodeURIComponent(text);
+  $("req").style.display="none";$("done").classList.add("on");document.querySelector(".abnb").style.display="none";
+});
+$("copy").addEventListener("click",async()=>{
+  try{await navigator.clipboard.writeText(text);$("copy").textContent="Copiado"}
+  catch(_){$("copy").textContent="Seleccioná el texto y copialo"}
+  setTimeout(()=>$("copy").textContent="Copiar mensaje",2500);
+});
+$("back").addEventListener("click",()=>{$("done").classList.remove("on");$("req").style.display="";document.querySelector(".abnb").style.display=""});
+const FOTOS=[["fotos/f01.jpg", "Terraza con vista al mar", "Terraza"], ["fotos/f02.jpg", "Terraza", "Terraza"], ["fotos/f03.jpg", "Rincón de la terraza", "Terraza"], ["fotos/f04.jpg", "Comedor", "Living y comedor"], ["fotos/f05.jpg", "Comedor y cocina integrados", "Living y comedor"], ["fotos/f06.jpg", "Mesa de madera maciza", "Living y comedor"], ["fotos/f07.jpg", "Cocina equipada", "Cocina"], ["fotos/f08.jpg", "Cocina con parrillero", "Cocina"], ["fotos/f09.jpg", "Cocina", "Cocina"], ["fotos/f10.jpg", "Dormitorio principal", "Dormitorios"], ["fotos/f11.jpg", "Dormitorio principal", "Dormitorios"], ["fotos/f12.jpg", "Dormitorio con cucheta", "Dormitorios"], ["fotos/f13.jpg", "Dormitorio con cucheta", "Dormitorios"], ["fotos/f14.jpg", "Cucheta con cajones", "Dormitorios"], ["fotos/f15.jpg", "Segundo dormitorio con cucheta", "Dormitorios"], ["fotos/f16.jpg", "Baño con lavarropas y secadora", "Baños"], ["fotos/f17.jpg", "Baño", "Baños"], ["fotos/f18.jpg", "Patio con ducha exterior", "Patio y parrillero"], ["fotos/f19.jpg", "Parrillero exterior", "Patio y parrillero"], ["fotos/f20.jpg", "Patio y jardín", "Patio y parrillero"], ["fotos/f21.jpg", "Entrada", "Entrada"]];
+const strip=document.getElementById("strip");
+const CATS=["Todas"].concat([...new Set(FOTOS.map(f=>f[2]))]);let cat="Todas",VIS=FOTOS;
+const tabs=document.getElementById("tabs");
+const drawTabs=()=>{tabs.innerHTML=CATS.map(c=>`<button type="button" role="tab" aria-selected="${c===cat}">${c}</button>`).join("")};
+const drawStrip=()=>{VIS=cat==="Todas"?FOTOS:FOTOS.filter(f=>f[2]===cat);strip.innerHTML=VIS.map((f,i)=>`<figure data-i="${i}"><img src="${f[0]}" alt="${f[1]}" loading="${i<3?"eager":"lazy"}"><figcaption>${f[1]}</figcaption></figure>`).join("");strip.scrollLeft=0};
+tabs.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cat=b.textContent;drawTabs();drawStrip()});
+drawTabs();drawStrip();
+const step=d=>{const fig=strip.querySelector("figure");const w=fig?fig.getBoundingClientRect().width+14:400;strip.scrollBy({left:d*w,behavior:"smooth"})};
+document.getElementById("gprev").addEventListener("click",()=>step(-1));
+document.getElementById("gnext").addEventListener("click",()=>step(1));
+strip.addEventListener("keydown",e=>{if(e.key==="ArrowRight")step(1);if(e.key==="ArrowLeft")step(-1)});
+const lb=document.getElementById("lb");let cur=0;
+const show=i=>{cur=(i+VIS.length)%VIS.length;document.getElementById("lbimg").src=VIS[cur][0];document.getElementById("lbimg").alt=VIS[cur][1];document.getElementById("lbcap").textContent=VIS[cur][1]+"  ·  "+(cur+1)+" / "+VIS.length};
+strip.addEventListener("click",e=>{const f=e.target.closest("figure");if(!f)return;show(+f.dataset.i);lb.hidden=false;document.getElementById("lbx").focus()});
+document.getElementById("lbx").addEventListener("click",()=>{lb.hidden=true});
+document.getElementById("lbp").addEventListener("click",()=>show(cur-1));
+document.getElementById("lbnx").addEventListener("click",()=>show(cur+1));
+lb.addEventListener("click",e=>{if(e.target===lb)lb.hidden=true});
+document.addEventListener("keydown",e=>{if(lb.hidden)return;if(e.key==="Escape")lb.hidden=true;if(e.key==="ArrowRight")show(cur+1);if(e.key==="ArrowLeft")show(cur-1)});
+render();
+}
+</script>
+</body>
+</html>
