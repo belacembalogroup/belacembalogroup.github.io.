@@ -4,13 +4,16 @@
 Uso: python3 tools/actualizar_calendario.py <archivo.ics> [fecha_AAAA-MM-DD]
 Toma todas las reservas y bloqueos (DTSTART..DTEND, DTEND exclusivo) y los
 publica como noches ocupadas, sin nombres ni códigos.
-Imprime CHANGED o UNCHANGED.
+Siempre reescribe el archivo con la fecha y hora de sincronización e imprime CHANGED.
 """
 import json, re, sys, datetime, pathlib
 
 ics = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8", errors="ignore")
 ics = re.sub(r"\r?\n[ \t]", "", ics)  # desplegar líneas continuadas
-upd = sys.argv[2] if len(sys.argv) > 2 else datetime.date.today().isoformat()
+# Fecha y hora de la sincronización, en hora de Uruguay (UTC-3, sin horario de verano).
+# El segundo argumento (fecha) se acepta por compatibilidad; la hora se toma del reloj.
+uy = datetime.timezone(datetime.timedelta(hours=-3))
+upd = datetime.datetime.now(uy).strftime("%Y-%m-%dT%H:%M-03:00")
 
 def d(v):
     v = v.strip()[:8]
@@ -28,8 +31,6 @@ out = pathlib.Path(__file__).resolve().parent.parent / "atlantida" / "calendario
 old = out.read_text() if out.exists() else ""
 m = re.search(r'"busy":\s*(\[.*\])', old, re.S)
 same = m is not None and json.loads(m.group(1)) == busy
-if same:
-    print("UNCHANGED")
-    sys.exit(0)
+# Siempre se reescribe para que la página muestre la fecha y hora de la última sincronización.
 out.write_text("window.CBC_CAL=" + json.dumps({"updated": upd, "busy": busy}) + ";\n")
-print("CHANGED", len(busy), "rangos")
+print("CHANGED", len(busy), "rangos", "(fechas iguales, solo hora de sincronización)" if same else "(fechas nuevas)")

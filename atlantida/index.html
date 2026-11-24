@@ -342,7 +342,7 @@ const fmt=s=>parse(s).toLocaleDateString("es-UY",{weekday:"short",day:"numeric",
 let view=new Date(now.getFullYear(),now.getMonth(),1);
 const first=new Date(view),lastM=new Date(parse(LAST).getFullYear(),parse(LAST).getMonth(),1);
 let ci=null,co=null;
-$("upd").textContent=parse(UPDATED).toLocaleDateString("es-UY",{day:"numeric",month:"long",year:"numeric"});
+{const dd=UPDATED.slice(0,10),tm=UPDATED.length>10?UPDATED.slice(11,16):"";let t=parse(dd).toLocaleDateString("es-UY",{weekday:"long",day:"numeric",month:"long",year:"numeric"});if(tm)t+=", a las "+tm+" (hora de Uruguay)";$("upd").textContent=t}
 $("fguests").innerHTML=Array.from({length:MAXG},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("");
 $("fguests").value="2";
 function freeRange(a,b){for(let d=parse(a);key(d)<b;d=addD(d,1)){if(busy.has(key(d)))return false}return true}
