@@ -394,7 +394,7 @@ $("next").addEventListener("click",()=>{view=new Date(view.getFullYear(),view.ge
 let text="",DATA=null;
 // Dirección de la aplicación web de Google Apps Script (cuenta casabelacembalo@gmail.com).
 // Vacía = el botón de email abre la app de correo del visitante.
-const ENDPOINT="";
+const ENDPOINT="https://script.google.com/macros/s/AKfycbzkZMLfu3_oTlsu_jkWVcryklrDl1ifgXwb4X3h2uR7q9cCIleGCYUXv5yRPHVgqY_k/exec";
 const enviarCopia=canal=>{if(!ENDPOINT||!DATA)return false;const b=new URLSearchParams(Object.assign({canal},DATA));try{if(navigator.sendBeacon&&navigator.sendBeacon(ENDPOINT,b))return true}catch(_){}fetch(ENDPOINT,{method:"POST",mode:"no-cors",body:b,keepalive:true}).catch(()=>{});return true};
 $("req").addEventListener("submit",e=>{
   e.preventDefault();
