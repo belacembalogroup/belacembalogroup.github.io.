@@ -53,6 +53,9 @@ header.hero{padding-bottom:clamp(16px,2.4vw,32px);padding-left:max(2.5vw,16px)}
 .logo .casa{font:300 clamp(15px,1.6vw,20px)/1 "Manrope",sans-serif;letter-spacing:.55em;margin-right:-.55em;margin-bottom:4px}
 .logo .bela{font:400 clamp(60px,9vw,112px)/1 "Allura","Great Vibes",cursive;letter-spacing:0}
 .logo .place{align-self:flex-end;font:300 clamp(13px,1.4vw,17px)/1 "Manrope",sans-serif;letter-spacing:.45em;margin-right:-.45em;margin-top:clamp(0px,.3vw,4px)}
+.langs{position:absolute;top:max(16px,env(safe-area-inset-top));right:max(16px,2.5vw);z-index:2;display:flex;gap:4px;background:rgba(15,29,36,.35);backdrop-filter:blur(6px);border-radius:999px;padding:4px}
+.langs button{min-height:36px;min-width:44px;padding:0 10px;border:0;background:transparent;color:#fff;font-size:13px;letter-spacing:.06em}
+.langs button[aria-pressed=true]{background:#fff;color:#0f1d24}
 .cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;min-height:50px;padding:0 26px;border-radius:999px;background:#ffffff;color:#0f1d24;font:600 15px "Manrope",sans-serif;text-decoration:none;letter-spacing:.02em;transition:background .2s,color .2s}
 .cta:hover{background:var(--sun);color:#fff}
 .cta::after{content:"↓";font-size:16px}
@@ -204,6 +207,7 @@ footer b small{font:300 11px/1 "Manrope",sans-serif;letter-spacing:.5em;margin-r
 </head>
 <body>
 <header class="hero band">
+  <div class="langs" role="group" aria-label="Idioma / Language"><button type="button" data-l="es">ES</button><button type="button" data-l="en">EN</button><button type="button" data-l="pt">PT</button></div>
   <img class="scene" src="hero.jpg" alt="Atardecer sobre el mar desde la terraza de Casa Bela Cembalo">
   <div class="wrap">
     <h1 class="logo"><img src="logo-oficial.svg" alt="Casa Bela Cembalo - Atlántida"></h1>
@@ -343,6 +347,17 @@ footer b small{font:300 11px/1 "Manrope",sans-serif;letter-spacing:.5em;margin-r
 <script>document.write('<script src="calendario.js?t='+Date.now()+'"><\/script>')</script>
 <script>
 {
+const I18N={"Elegí tus fechas y enviá tu solicitud de reserva directa. Te confirmamos por mensaje.": {"en": "Choose your dates and send a direct booking request. We'll confirm by message.", "pt": "Escolha suas datas e envie seu pedido de reserva direta. Confirmamos por mensagem."}, "Ver disponibilidad": {"en": "Check availability", "pt": "Ver disponibilidade"}, "La casa": {"en": "The house", "pt": "A casa"}, "huéspedes": {"en": "guests", "pt": "hóspedes"}, "dormitorios": {"en": "bedrooms", "pt": "quartos"}, "camas": {"en": "beds", "pt": "camas"}, "baños": {"en": "bathrooms", "pt": "banheiros"}, "Casa entera, renovada, tranquila y céntrica, frente a Playa Brava y a pocos pasos de la rambla. Desde la terraza con vista al mar se ven los atardeceres. Está a unas 2 cuadras de la parada de ómnibus y a 8 del centro, que se recorre caminando.": {"en": "Entire home, renovated, quiet and central, facing Playa Brava and a few steps from the seaside promenade. Watch the sunsets from the sea-view terrace. About 2 blocks from the bus stop and 8 from the town center, an easy walk.", "pt": "Casa inteira, reformada, tranquila e central, em frente à Playa Brava e a poucos passos da orla. Do terraço com vista para o mar se veem os pores do sol. Fica a cerca de 2 quadras do ponto de ônibus e a 8 do centro, que se percorre a pé."}, "Dormitorio 1": {"en": "Bedroom 1", "pt": "Quarto 1"}, "Dormitorio 2": {"en": "Bedroom 2", "pt": "Quarto 2"}, "Dormitorio 3": {"en": "Bedroom 3", "pt": "Quarto 3"}, "cama doble": {"en": "double bed", "pt": "cama de casal"}, "cama doble y cama individual": {"en": "double bed and single bed", "pt": "cama de casal e cama de solteiro"}, "Baños": {"en": "Bathrooms", "pt": "Banheiros"}, "uno en planta baja con lavarropas y secadora, y otro arriba, junto a la cocina y la terraza": {"en": "one on the ground floor with washer and dryer, and one upstairs next to the kitchen and terrace", "pt": "um no térreo com lavadora e secadora, e outro no andar de cima, junto à cozinha e ao terraço"}, "Vista al mar": {"en": "Ocean view", "pt": "Vista para o mar"}, "Acceso a la playa": {"en": "Beach access", "pt": "Acesso à praia"}, "Terraza privada": {"en": "Private terrace", "pt": "Terraço privativo"}, "Parrillero": {"en": "Grill", "pt": "Churrasqueira"}, "Ducha exterior": {"en": "Outdoor shower", "pt": "Chuveiro externo"}, "Aire acondicionado y calefacción": {"en": "Air conditioning and heating", "pt": "Ar-condicionado e aquecimento"}, "Wifi": {"en": "Wi-Fi", "pt": "Wi-Fi"}, "Cocina equipada": {"en": "Equipped kitchen", "pt": "Cozinha equipada"}, "Lavarropas y secadora": {"en": "Washer and dryer", "pt": "Lavadora e secadora"}, "Estacionamiento para 3 autos": {"en": "Parking for 3 cars", "pt": "Estacionamento para 3 carros"}, "Entrada": {"en": "Check-in", "pt": "Check-in"}, "desde las 16:00": {"en": "from 4:00 pm", "pt": "a partir das 16:00"}, "Salida": {"en": "Check-out", "pt": "Check-out"}, "hasta las 10:00": {"en": "until 10:00 am", "pt": "até as 10:00"}, "Mascotas": {"en": "Pets", "pt": "Animais"}, "No se permiten": {"en": "Not allowed", "pt": "Não permitido"}, "Fiestas y eventos": {"en": "Parties and events", "pt": "Festas e eventos"}, "4,78 de 5 en Airbnb, con 18 reseñas · Anfitriona Superhost": {"en": "4.78 out of 5 on Airbnb, 18 reviews · Superhost", "pt": "4,78 de 5 no Airbnb, com 18 avaliações · Superhost"}, "Disponibilidad": {"en": "Availability", "pt": "Disponibilidade"}, "Libre": {"en": "Available", "pt": "Livre"}, "Ocupado": {"en": "Booked", "pt": "Ocupado"}, "Tu estadía": {"en": "Your stay", "pt": "Sua estadia"}, "Tocá el día de llegada y después el de salida. El día de salida puede coincidir con la llegada de otro huésped. Calendario actualizado el": {"en": "Tap your arrival day and then your departure day. Your departure day can be another guest's arrival day. Calendar updated on", "pt": "Toque o dia de chegada e depois o de saída. O dia de saída pode coincidir com a chegada de outro hóspede. Calendário atualizado em"}, "Solicitar reserva": {"en": "Request a booking", "pt": "Solicitar reserva"}, "Llegada": {"en": "Arrival", "pt": "Chegada"}, "Elegí fecha": {"en": "Choose date", "pt": "Escolha a data"}, "Elegí salida": {"en": "Choose departure", "pt": "Escolha a saída"}, "Todavía no elegiste fechas.": {"en": "You haven't chosen dates yet.", "pt": "Você ainda não escolheu as datas."}, "Ahora tocá el día de salida.": {"en": "Now tap your departure day.", "pt": "Agora toque o dia de saída."}, "Nombre y apellido": {"en": "Full name", "pt": "Nome e sobrenome"}, "Teléfono / WhatsApp": {"en": "Phone / WhatsApp", "pt": "Telefone / WhatsApp"}, "Huéspedes": {"en": "Guests", "pt": "Hóspedes"}, "Email (opcional)": {"en": "Email (optional)", "pt": "E-mail (opcional)"}, "Mensaje (opcional)": {"en": "Message (optional)", "pt": "Mensagem (opcional)"}, "Preparar solicitud": {"en": "Prepare request", "pt": "Preparar pedido"}, "¿Preferís reservar con Airbnb?": {"en": "Prefer to book on Airbnb?", "pt": "Prefere reservar pelo Airbnb?"}, "Reservar en Airbnb": {"en": "Book on Airbnb", "pt": "Reservar no Airbnb"}, "Tu solicitud está lista": {"en": "Your request is ready", "pt": "Seu pedido está pronto"}, "Enviala por WhatsApp o por email, o copiala. La reserva queda confirmada cuando te respondamos.": {"en": "Send it by WhatsApp or email, or copy it. Your booking is confirmed once we reply. (The summary is in Spanish for the host.)", "pt": "Envie por WhatsApp ou e-mail, ou copie. A reserva fica confirmada quando respondermos. (O resumo está em espanhol para o anfitrião.)"}, "Enviar por WhatsApp": {"en": "Send by WhatsApp", "pt": "Enviar por WhatsApp"}, "Enviar por email": {"en": "Send by email", "pt": "Enviar por e-mail"}, "¡Listo! Recibimos tu solicitud por email. Te respondemos a la brevedad.": {"en": "Done! We received your request by email. We'll reply shortly.", "pt": "Pronto! Recebemos seu pedido por e-mail. Responderemos em breve."}, "Copiar mensaje": {"en": "Copy message", "pt": "Copiar mensagem"}, "Cambiar datos": {"en": "Edit details", "pt": "Alterar dados"}, "Copiado": {"en": "Copied", "pt": "Copiado"}, "Seleccioná el texto y copialo": {"en": "Select the text and copy it", "pt": "Selecione o texto e copie"}, "Enviando…": {"en": "Sending…", "pt": "Enviando…"}, "Solicitud enviada ✓": {"en": "Request sent ✓", "pt": "Pedido enviado ✓"}, "Cómo funciona la reserva directa": {"en": "How direct booking works", "pt": "Como funciona a reserva direta"}, "Elegís las fechas": {"en": "Choose your dates", "pt": "Escolha as datas"}, "El calendario muestra en gris las noches ya ocupadas, sumando las reservas de todos los canales.": {"en": "The calendar greys out nights that are already booked on any channel.", "pt": "O calendário mostra em cinza as noites já ocupadas, somando as reservas de todos os canais."}, "Nos mandás la solicitud": {"en": "Send us your request", "pt": "Envie seu pedido"}, "Con tus datos y la cantidad de huéspedes. No se cobra nada en este paso.": {"en": "With your details and number of guests. Nothing is charged at this step.", "pt": "Com seus dados e o número de hóspedes. Nada é cobrado nesta etapa."}, "Te confirmamos": {"en": "We confirm", "pt": "Nós confirmamos"}, "Revisamos la disponibilidad, te pasamos el precio final y la forma de pago, y bloqueamos tus fechas.": {"en": "We check availability, send you the final price and payment method, and block your dates.", "pt": "Verificamos a disponibilidade, enviamos o preço final e a forma de pagamento, e bloqueamos suas datas."}, "Ubicación": {"en": "Location", "pt": "Localização"}, "Atlántida, Canelones, Uruguay. La dirección exacta te la enviamos al confirmar la reserva.": {"en": "Atlántida, Canelones, Uruguay. We'll send you the exact address once your booking is confirmed.", "pt": "Atlántida, Canelones, Uruguai. Enviamos o endereço exato ao confirmar a reserva."}, "Contacto": {"en": "Contact", "pt": "Contato"}, "Ver en Airbnb": {"en": "View on Airbnb", "pt": "Ver no Airbnb"}, "Atlántida, Canelones": {"en": "Atlántida, Canelones", "pt": "Atlántida, Canelones"}, "Uruguay": {"en": "Uruguay", "pt": "Uruguai"}, "Hora estimada de llegada, consultas…": {"en": "Estimated arrival time, questions…", "pt": "Horário previsto de chegada, dúvidas…"}, "Atardecer sobre el mar desde la terraza de Casa Bela Cembalo": {"en": "Sunset over the sea from the Casa Bela Cembalo terrace", "pt": "Pôr do sol sobre o mar visto do terraço da Casa Bela Cembalo"}, "Fotos anteriores": {"en": "Previous photos", "pt": "Fotos anteriores"}, "Fotos siguientes": {"en": "Next photos", "pt": "Próximas fotos"}, "Ambientes": {"en": "Rooms", "pt": "Ambientes"}, "Galería de fotos": {"en": "Photo gallery", "pt": "Galeria de fotos"}, "Cerrar": {"en": "Close", "pt": "Fechar"}, "Anterior": {"en": "Previous", "pt": "Anterior"}, "Siguiente": {"en": "Next", "pt": "Próxima"}, "Meses anteriores": {"en": "Previous months", "pt": "Meses anteriores"}, "Meses siguientes": {"en": "Next months", "pt": "Próximos meses"}, "Mapa de Atlántida": {"en": "Map of Atlántida", "pt": "Mapa de Atlántida"}, "Elegí las fechas de llegada y salida en el calendario.": {"en": "Choose your arrival and departure dates on the calendar.", "pt": "Escolha as datas de chegada e saída no calendário."}, "Completá tu nombre y teléfono.": {"en": "Please enter your name and phone.", "pt": "Preencha seu nome e telefone."}, "Hay noches ocupadas en ese rango. Elegí otras fechas.": {"en": "Some nights in that range are booked. Please choose other dates.", "pt": "Há noites ocupadas nesse período. Escolha outras datas."}, "En esa fecha la estadía mínima es de": {"en": "The minimum stay for that date is", "pt": "Nessa data a estadia mínima é de"}, "noches.": {"en": "nights.", "pt": "noites."}, "noche": {"en": "night", "pt": "noite"}, "noches": {"en": "nights", "pt": "noites"}, "libre": {"en": "available", "pt": "livre"}, "no disponible": {"en": "unavailable", "pt": "indisponível"}, "tu salida": {"en": "your departure", "pt": "sua saída"}, "libre para salida": {"en": "available for departure", "pt": "livre para saída"}, "ocupado": {"en": "booked", "pt": "ocupado"}, "a las": {"en": "at", "pt": "às"}, "(hora de Uruguay)": {"en": "(Uruguay time)", "pt": "(horário do Uruguai)"}, "Todas": {"en": "All", "pt": "Todas"}, "Terraza": {"en": "Terrace", "pt": "Terraço"}, "Living y comedor": {"en": "Living and dining", "pt": "Sala e jantar"}, "Cocina": {"en": "Kitchen", "pt": "Cozinha"}, "Dormitorios": {"en": "Bedrooms", "pt": "Quartos"}, "Patio y parrillero": {"en": "Patio and grill", "pt": "Pátio e churrasqueira"}, "Terraza con vista al mar": {"en": "Sea-view terrace", "pt": "Terraço com vista para o mar"}, "Rincón de la terraza": {"en": "Terrace corner", "pt": "Canto do terraço"}, "Comedor": {"en": "Dining area", "pt": "Sala de jantar"}, "Comedor y cocina integrados": {"en": "Open-plan dining and kitchen", "pt": "Sala de jantar e cozinha integradas"}, "Mesa de madera maciza": {"en": "Solid wood table", "pt": "Mesa de madeira maciça"}, "Cocina con parrillero": {"en": "Kitchen with grill", "pt": "Cozinha com churrasqueira"}, "Dormitorio principal": {"en": "Main bedroom", "pt": "Quarto principal"}, "Dormitorio con cucheta": {"en": "Bedroom with bunk bed", "pt": "Quarto com beliche"}, "Cucheta con cajones": {"en": "Bunk bed with drawers", "pt": "Beliche com gavetas"}, "Segundo dormitorio con cucheta": {"en": "Second bedroom with bunk bed", "pt": "Segundo quarto com beliche"}, "Baño con lavarropas y secadora": {"en": "Bathroom with washer and dryer", "pt": "Banheiro com lavadora e secadora"}, "Baño": {"en": "Bathroom", "pt": "Banheiro"}, "Patio con ducha exterior": {"en": "Patio with outdoor shower", "pt": "Pátio com chuveiro externo"}, "Parrillero exterior": {"en": "Outdoor grill", "pt": "Churrasqueira externa"}, "Patio y jardín": {"en": "Patio and garden", "pt": "Pátio e jardim"}, "Frente": {"en": "Front", "pt": "Fachada"}, "Frente de la casa": {"en": "Front of the house", "pt": "Fachada da casa"}};
+const LOC={es:"es-UY",en:"en-US",pt:"pt-BR"};
+let LANG=(()=>{let l="";try{l=localStorage.getItem("cbc_lang")||""}catch(_){}if(!l){const n=(navigator.language||"es").slice(0,2);l=n==="en"?"en":n==="pt"?"pt":"es"}return l})();
+const T=s=>LANG==="es"?s:((I18N[s]&&I18N[s][LANG])||s);
+const ORIG=new WeakMap();
+const applyStatic=()=>{document.documentElement.lang=LANG;
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest("script,#msgtxt,#months,#strip,#tabs,#lbcap,#upd,#nn,#ci,#co,#err")?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  let n;while(n=w.nextNode()){if(!ORIG.has(n))ORIG.set(n,n.nodeValue);const o=ORIG.get(n),k=o.trim();if(!k)continue;n.nodeValue=o.replace(k,T(k))}
+  document.querySelectorAll("[placeholder],[aria-label],img[alt]").forEach(el=>{["placeholder","aria-label","alt"].forEach(a=>{if(!el.hasAttribute(a))return;const key="data-o-"+a;if(!el.hasAttribute(key))el.setAttribute(key,el.getAttribute(a));el.setAttribute(a,T(el.getAttribute(key)))})});
+  document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===LANG));
+};
 const CAL=window.CBC_CAL||{updated:"2026-11-24",busy:[]};
 const UPDATED=CAL.updated;
 const BUSY=CAL.busy;
@@ -355,58 +370,60 @@ const pad=n=>String(n).padStart(2,"0");
 const key=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
 const parse=s=>{const[a,b,c]=s.split("-").map(Number);return new Date(a,b-1,c)};
 const addD=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);
+const DOW=()=>{const b=new Date(2024,0,1);return Array.from({length:7},(_,i)=>`<span>${new Date(2024,0,1+i).toLocaleDateString(LOC[LANG],{weekday:"short"}).replace(".","").slice(0,3)}</span>`).join("")};
 const busy=new Set();
 const CLOSED=[["2027-01-19","2027-01-21"]];
 for(const[s,e]of BUSY.concat(CLOSED)){for(let d=parse(s);key(d)<e;d=addD(d,1))busy.add(key(d))}
 const now=new Date();const today=key(new Date(now.getFullYear(),now.getMonth(),now.getDate()));
 {let gap=[];const flush=()=>{gap.forEach(k=>GAP[k]=gap.length);if(gap.length&&gap.length<minFor(gap[0]))gap.forEach(k=>busy.add(k));gap=[]};
 for(let d=parse(today);key(d)<=LAST;d=addD(d,1)){const k=key(d);if(busy.has(k))flush();else gap.push(k)}flush()}
-const fmt=s=>parse(s).toLocaleDateString("es-UY",{weekday:"short",day:"numeric",month:"short"});
+const fmtES=s=>parse(s).toLocaleDateString("es-UY",{weekday:"short",day:"numeric",month:"short"});
+const fmt=s=>parse(s).toLocaleDateString(LOC[LANG],{weekday:"short",day:"numeric",month:"short"});
 let view=new Date(now.getFullYear(),now.getMonth(),1);
 const first=new Date(view),lastM=new Date(parse(LAST).getFullYear(),parse(LAST).getMonth(),1);
 let ci=null,co=null;
-{const dd=UPDATED.slice(0,10),tm=UPDATED.length>10?UPDATED.slice(11,16):"";let t=parse(dd).toLocaleDateString("es-UY",{weekday:"long",day:"numeric",month:"long",year:"numeric"});if(tm)t+=", a las "+tm+" (hora de Uruguay)";$("upd").textContent=t}
+const drawUpd=()=>{const dd=UPDATED.slice(0,10),tm=UPDATED.length>10?UPDATED.slice(11,16):"";let t=parse(dd).toLocaleDateString(LOC[LANG],{weekday:"long",day:"numeric",month:"long",year:"numeric"});if(tm)t+=", "+T("a las")+" "+tm+" "+T("(hora de Uruguay)");$("upd").textContent=t};drawUpd();
 $("fguests").innerHTML=Array.from({length:MAXG},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("");
 $("fguests").value="2";
 function freeRange(a,b){for(let d=parse(a);key(d)<b;d=addD(d,1)){if(busy.has(key(d)))return false}return true}
 function month(m){
   const y=m.getFullYear(),mo=m.getMonth();
-  let name=m.toLocaleDateString("es-UY",{month:"long",year:"numeric"}).replace(" de "," ");name=name[0].toUpperCase()+name.slice(1);
+  let name=m.toLocaleDateString(LOC[LANG],{month:"long",year:"numeric"}).replace(" de "," ");name=name[0].toUpperCase()+name.slice(1);
   const lead=(new Date(y,mo,1).getDay()+6)%7,len=new Date(y,mo+1,0).getDate();
   let cells="";for(let i=0;i<lead;i++)cells+=`<span class="day blank"></span>`;
   for(let i=1;i<=len;i++){
     const k=y+"-"+pad(mo+1)+"-"+pad(i);
-    let c="day",dis=false,lab="libre";
-    if(k<today||k>LAST){c+=" past";dis=true;lab="no disponible"}
-    else if(co&&k===co){lab="tu salida"}
+    let c="day",dis=false,lab=T("libre");
+    if(k<today||k>LAST){c+=" past";dis=true;lab=T("no disponible")}
+    else if(co&&k===co){lab=T("tu salida")}
     else if(busy.has(k)){
-      if(ci&&!co&&k>ci&&freeRange(ci,k)){c+=" co";lab="libre para salida"}
-      else{c+=" busy";dis=true;lab="ocupado"}
+      if(ci&&!co&&k>ci&&freeRange(ci,k)){c+=" co";lab=T("libre para salida")}
+      else{c+=" busy";dis=true;lab=T("ocupado")}
     }
     if(ci&&k===ci)c+=" s";
     if(co&&k===co)c+=" e";
     if(ci&&co&&k>ci&&k<co)c+=" inr";
     cells+=`<button type="button" class="${c}" data-k="${k}" ${dis?"disabled":""} aria-label="${i} de ${name}, ${lab}">${i}</button>`;
   }
-  return `<div class="month"><h3>${name}</h3><div class="dow"><span>lu</span><span>ma</span><span>mi</span><span>ju</span><span>vi</span><span>sá</span><span>do</span></div><div class="days">${cells}</div></div>`;
+  return `<div class="month"><h3>${name}</h3><div class="dow">${DOW()}</div><div class="days">${cells}</div></div>`;
 }
 function render(){
   const m2=new Date(view.getFullYear(),view.getMonth()+1,1);
   $("months").innerHTML=month(view)+(m2<=lastM?month(m2):"");
   $("prev").disabled=view<=first;
   $("next").disabled=m2>=lastM;
-  $("ci").textContent=ci?fmt(ci):"Elegí fecha";
-  $("co").textContent=co?fmt(co):(ci?"Elegí salida":"Elegí fecha");
-  if(ci&&co){const n=Math.round((parse(co)-parse(ci))/864e5);$("nn").textContent=n+(n===1?" noche":" noches")}
-  else $("nn").textContent=ci?"Ahora tocá el día de salida.":"Todavía no elegiste fechas.";
+  $("ci").textContent=ci?fmt(ci):T("Elegí fecha");
+  $("co").textContent=co?fmt(co):(ci?T("Elegí salida"):T("Elegí fecha"));
+  if(ci&&co){const n=Math.round((parse(co)-parse(ci))/864e5);$("nn").textContent=n+" "+(n===1?T("noche"):T("noches"))}
+  else $("nn").textContent=ci?T("Ahora tocá el día de salida."):T("Todavía no elegiste fechas.");
 }
 $("months").addEventListener("click",e=>{
   const b=e.target.closest("button.day");if(!b||b.disabled)return;
   const k=b.dataset.k;$("err").textContent="";
   if(!ci||co||k<=ci){if(busy.has(k))return;ci=k;co=null}
-  else if(freeRange(ci,k)&&Math.round((parse(k)-parse(ci))/864e5)<minFor(ci)){$("err").textContent="En esa fecha la estadía mínima es de "+minFor(ci)+" noches."}
+  else if(freeRange(ci,k)&&Math.round((parse(k)-parse(ci))/864e5)<minFor(ci)){$("err").textContent=T("En esa fecha la estadía mínima es de")+" "+minFor(ci)+" "+T("noches.")}
   else if(freeRange(ci,k))co=k;
-  else{ci=busy.has(k)?null:k;co=null;$("err").textContent="Hay noches ocupadas en ese rango. Elegí otras fechas."}
+  else{ci=busy.has(k)?null:k;co=null;$("err").textContent=T("Hay noches ocupadas en ese rango. Elegí otras fechas.")}
   render();
 });
 $("prev").addEventListener("click",()=>{view=new Date(view.getFullYear(),view.getMonth()-1,1);render()});
@@ -419,11 +436,11 @@ const enviarCopia=canal=>{if(!ENDPOINT||!DATA)return false;const b=new URLSearch
 $("req").addEventListener("submit",e=>{
   e.preventDefault();
   const name=$("fname").value.trim(),phone=$("fphone").value.trim();
-  if(!ci||!co){$("err").textContent="Elegí las fechas de llegada y salida en el calendario.";return}
-  if(!name||!phone){$("err").textContent="Completá tu nombre y teléfono.";return}
+  if(!ci||!co){$("err").textContent=T("Elegí las fechas de llegada y salida en el calendario.");return}
+  if(!name||!phone){$("err").textContent=T("Completá tu nombre y teléfono.");return}
   const n=Math.round((parse(co)-parse(ci))/864e5);
   const email=$("femail").value.trim(),msg=$("fmsg").value.trim();
-  text=`Solicitud de reserva directa - Casa Bela Cembalo, Atlántida\n\nLlegada: ${fmt(ci)} (${ci})\nSalida: ${fmt(co)} (${co})\nNoches: ${n}\nHuéspedes: ${$("fguests").value}\n\nNombre: ${name}\nTeléfono: ${phone}`+(email?`\nEmail: ${email}`:"")+(msg?`\n\nMensaje: ${msg}`:"");
+  text=`Solicitud de reserva directa - Casa Bela Cembalo, Atlántida\n\nLlegada: ${fmtES(ci)} (${ci})\nSalida: ${fmtES(co)} (${co})\nNoches: ${n}\nHuéspedes: ${$("fguests").value}\n\nNombre: ${name}\nTeléfono: ${phone}`+(email?`\nEmail: ${email}`:"")+(msg?`\n\nMensaje: ${msg}`:"")+(LANG!=="es"?`\nIdioma del huésped: ${LANG==="en"?"inglés":"portugués"}`:"");
   DATA={ci,co,noches:String(n),huespedes:$("fguests").value,nombre:name,tel:phone,email,mensaje:msg,web:$("fweb")?$("fweb").value:""};
   $("msgtxt").textContent=text;
   $("wa").href="https://wa.me/16672041266?text="+encodeURIComponent(text);
@@ -431,33 +448,35 @@ $("req").addEventListener("submit",e=>{
   $("req").style.display="none";$("done").classList.add("on");document.querySelector(".abnb").style.display="none";
 });
 $("wa").addEventListener("click",()=>{enviarCopia("WhatsApp")});
-$("mail").addEventListener("click",e=>{if(!ENDPOINT)return;e.preventDefault();const m=$("mail");if(m.dataset.sent)return;m.dataset.sent="1";m.textContent="Enviando…";enviarCopia("Email");setTimeout(()=>{m.textContent="Solicitud enviada ✓";$("sent").hidden=false},900)});
+$("mail").addEventListener("click",e=>{if(!ENDPOINT)return;e.preventDefault();const m=$("mail");if(m.dataset.sent)return;m.dataset.sent="1";m.textContent=T("Enviando…");enviarCopia("Email");setTimeout(()=>{m.textContent=T("Solicitud enviada ✓");$("sent").hidden=false},900)});
 $("copy").addEventListener("click",async()=>{
-  try{await navigator.clipboard.writeText(text);$("copy").textContent="Copiado"}
-  catch(_){$("copy").textContent="Seleccioná el texto y copialo"}
-  setTimeout(()=>$("copy").textContent="Copiar mensaje",2500);
+  try{await navigator.clipboard.writeText(text);$("copy").textContent=T("Copiado")}
+  catch(_){$("copy").textContent=T("Seleccioná el texto y copialo")}
+  setTimeout(()=>$("copy").textContent=T("Copiar mensaje"),2500);
 });
-$("back").addEventListener("click",()=>{const m=$("mail");delete m.dataset.sent;m.textContent="Enviar por email";$("sent").hidden=true;$("done").classList.remove("on");$("req").style.display="";document.querySelector(".abnb").style.display=""});
-const FOTOS=[["fotos/f01.jpg", "Terraza con vista al mar", "Terraza"], ["fotos/f02.jpg", "Terraza", "Terraza"], ["fotos/f03.jpg", "Rincón de la terraza", "Terraza"], ["fotos/f04.jpg", "Comedor", "Living y comedor"], ["fotos/f05.jpg", "Comedor y cocina integrados", "Living y comedor"], ["fotos/f06.jpg", "Mesa de madera maciza", "Living y comedor"], ["fotos/f07.jpg", "Cocina equipada", "Cocina"], ["fotos/f08.jpg", "Cocina con parrillero", "Cocina"], ["fotos/f09.jpg", "Cocina", "Cocina"], ["fotos/f10.jpg", "Dormitorio principal", "Dormitorios"], ["fotos/f11.jpg", "Dormitorio principal", "Dormitorios"], ["fotos/f12.jpg", "Dormitorio con cucheta", "Dormitorios"], ["fotos/f13.jpg", "Dormitorio con cucheta", "Dormitorios"], ["fotos/f14.jpg", "Cucheta con cajones", "Dormitorios"], ["fotos/f15.jpg", "Segundo dormitorio con cucheta", "Dormitorios"], ["fotos/f16.jpg", "Baño con lavarropas y secadora", "Baños"], ["fotos/f17.jpg", "Baño", "Baños"], ["fotos/f18.jpg", "Patio con ducha exterior", "Patio y parrillero"], ["fotos/f19.jpg", "Parrillero exterior", "Patio y parrillero"], ["fotos/f20.jpg", "Patio y jardín", "Patio y parrillero"], ["fotos/f21.jpg", "Entrada", "Entrada"]];
+$("back").addEventListener("click",()=>{const m=$("mail");delete m.dataset.sent;m.textContent=T("Enviar por email");$("sent").hidden=true;$("done").classList.remove("on");$("req").style.display="";document.querySelector(".abnb").style.display=""});
+const FOTOS=[["fotos/f01.jpg", "Terraza con vista al mar", "Terraza"], ["fotos/f02.jpg", "Terraza", "Terraza"], ["fotos/f03.jpg", "Rincón de la terraza", "Terraza"], ["fotos/f04.jpg", "Comedor", "Living y comedor"], ["fotos/f05.jpg", "Comedor y cocina integrados", "Living y comedor"], ["fotos/f06.jpg", "Mesa de madera maciza", "Living y comedor"], ["fotos/f07.jpg", "Cocina equipada", "Cocina"], ["fotos/f08.jpg", "Cocina con parrillero", "Cocina"], ["fotos/f09.jpg", "Cocina", "Cocina"], ["fotos/f10.jpg", "Dormitorio principal", "Dormitorios"], ["fotos/f11.jpg", "Dormitorio principal", "Dormitorios"], ["fotos/f12.jpg", "Dormitorio con cucheta", "Dormitorios"], ["fotos/f13.jpg", "Dormitorio con cucheta", "Dormitorios"], ["fotos/f14.jpg", "Cucheta con cajones", "Dormitorios"], ["fotos/f15.jpg", "Segundo dormitorio con cucheta", "Dormitorios"], ["fotos/f16.jpg", "Baño con lavarropas y secadora", "Baños"], ["fotos/f17.jpg", "Baño", "Baños"], ["fotos/f18.jpg", "Patio con ducha exterior", "Patio y parrillero"], ["fotos/f19.jpg", "Parrillero exterior", "Patio y parrillero"], ["fotos/f20.jpg", "Patio y jardín", "Patio y parrillero"], ["fotos/f21.jpg", "Frente de la casa", "Frente"]];
 const strip=document.getElementById("strip");
 const CATS=["Todas"].concat([...new Set(FOTOS.map(f=>f[2]))]);let cat="Todas",VIS=FOTOS;
 const tabs=document.getElementById("tabs");
-const drawTabs=()=>{tabs.innerHTML=CATS.map(c=>`<button type="button" role="tab" aria-selected="${c===cat}">${c}</button>`).join("")};
-const drawStrip=()=>{VIS=cat==="Todas"?FOTOS:FOTOS.filter(f=>f[2]===cat);strip.innerHTML=VIS.map((f,i)=>`<figure data-i="${i}"><img src="${f[0]}" alt="${f[1]}" loading="${i<3?"eager":"lazy"}"><figcaption>${f[1]}</figcaption></figure>`).join("");strip.scrollLeft=0};
-tabs.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cat=b.textContent;drawTabs();drawStrip()});
+const drawTabs=()=>{tabs.innerHTML=CATS.map(c=>`<button type="button" role="tab" data-c="${c}" aria-selected="${c===cat}">${T(c)}</button>`).join("")};
+const drawStrip=()=>{VIS=cat==="Todas"?FOTOS:FOTOS.filter(f=>f[2]===cat);strip.innerHTML=VIS.map((f,i)=>`<figure data-i="${i}"><img src="${f[0]}" alt="${T(f[1])}" loading="${i<3?"eager":"lazy"}"><figcaption>${T(f[1])}</figcaption></figure>`).join("");strip.scrollLeft=0};
+tabs.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cat=b.dataset.c;drawTabs();drawStrip()});
 drawTabs();drawStrip();
 const step=d=>{const fig=strip.querySelector("figure");const w=fig?fig.getBoundingClientRect().width+14:400;strip.scrollBy({left:d*w,behavior:"smooth"})};
 document.getElementById("gprev").addEventListener("click",()=>step(-1));
 document.getElementById("gnext").addEventListener("click",()=>step(1));
 strip.addEventListener("keydown",e=>{if(e.key==="ArrowRight")step(1);if(e.key==="ArrowLeft")step(-1)});
 const lb=document.getElementById("lb");let cur=0;
-const show=i=>{cur=(i+VIS.length)%VIS.length;document.getElementById("lbimg").src=VIS[cur][0];document.getElementById("lbimg").alt=VIS[cur][1];document.getElementById("lbcap").textContent=VIS[cur][1]+"  ·  "+(cur+1)+" / "+VIS.length};
+const show=i=>{cur=(i+VIS.length)%VIS.length;document.getElementById("lbimg").src=VIS[cur][0];document.getElementById("lbimg").alt=T(VIS[cur][1]);document.getElementById("lbcap").textContent=T(VIS[cur][1])+"  ·  "+(cur+1)+" / "+VIS.length};
 strip.addEventListener("click",e=>{const f=e.target.closest("figure");if(!f)return;show(+f.dataset.i);lb.hidden=false;document.getElementById("lbx").focus()});
 document.getElementById("lbx").addEventListener("click",()=>{lb.hidden=true});
 document.getElementById("lbp").addEventListener("click",()=>show(cur-1));
 document.getElementById("lbnx").addEventListener("click",()=>show(cur+1));
 lb.addEventListener("click",e=>{if(e.target===lb)lb.hidden=true});
 document.addEventListener("keydown",e=>{if(lb.hidden)return;if(e.key==="Escape")lb.hidden=true;if(e.key==="ArrowRight")show(cur+1);if(e.key==="ArrowLeft")show(cur-1)});
+applyStatic();
+document.querySelectorAll(".langs button").forEach(b=>b.addEventListener("click",()=>{LANG=b.dataset.l;try{localStorage.setItem("cbc_lang",LANG)}catch(_){}applyStatic();drawUpd();drawTabs();drawStrip();render()}));
 render();
 }
 </script>
