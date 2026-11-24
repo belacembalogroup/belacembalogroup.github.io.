@@ -53,9 +53,11 @@ header.hero{padding-bottom:clamp(16px,2.4vw,32px);padding-left:max(2.5vw,16px)}
 .logo .casa{font:300 clamp(15px,1.6vw,20px)/1 "Manrope",sans-serif;letter-spacing:.55em;margin-right:-.55em;margin-bottom:4px}
 .logo .bela{font:400 clamp(60px,9vw,112px)/1 "Allura","Great Vibes",cursive;letter-spacing:0}
 .logo .place{align-self:flex-end;font:300 clamp(13px,1.4vw,17px)/1 "Manrope",sans-serif;letter-spacing:.45em;margin-right:-.45em;margin-top:clamp(0px,.3vw,4px)}
-.langs{position:absolute;top:max(16px,env(safe-area-inset-top));right:max(16px,2.5vw);z-index:2;display:flex;gap:4px;background:rgba(15,29,36,.35);backdrop-filter:blur(6px);border-radius:999px;padding:4px}
-.langs button{min-height:36px;min-width:44px;padding:0 10px;border:0;background:transparent;color:#fff;font-size:13px;letter-spacing:.06em}
-.langs button[aria-pressed=true]{background:#fff;color:#0f1d24}
+.langs{position:absolute;top:max(18px,env(safe-area-inset-top));right:max(16px,2.5vw);z-index:2;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.94);border-radius:999px;padding:5px;box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.langs::before{content:"";width:22px;height:22px;margin:0 4px 0 8px;flex:none;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f1d24' stroke-width='1.6'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18'/%3E%3C/svg%3E")}
+.langs button{min-height:40px;min-width:48px;padding:0 12px;border:0;background:transparent;color:#0f1d24;font:700 15px "Manrope",sans-serif;letter-spacing:.06em;transition:none}
+.langs button:hover{background:#ece4d6}
+.langs button[aria-pressed=true]{background:#0f1d24;color:#fff}
 .cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;min-height:50px;padding:0 26px;border-radius:999px;background:#ffffff;color:#0f1d24;font:600 15px "Manrope",sans-serif;text-decoration:none;letter-spacing:.02em;transition:background .2s,color .2s}
 .cta:hover{background:var(--sun);color:#fff}
 .cta::after{content:"↓";font-size:16px}
