@@ -325,7 +325,7 @@ const UPDATED=CAL.updated;
 const BUSY=CAL.busy;
 const MAXG=8;
 const GAP={};
-const minFor=k=>{const m=k.slice(5,7);if(m==="01"||m==="02"||m==="03"){const g=GAP[k]||0;return g>=6?5:g===5?4:2}if(m==="12")return 2;return 1};
+const minFor=k=>{const m=k.slice(5,7);if(m==="01"||m==="02"||m==="03"){const g=GAP[k]||0;return g>=6?5:g===5?4:2}if(m==="12")return 2;if(m>="04"&&m<="10")return 3;return 1};
 const LAST="2027-10-31";
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,"0");
