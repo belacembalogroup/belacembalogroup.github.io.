@@ -399,7 +399,7 @@ $("req").addEventListener("submit",e=>{
   text=`Solicitud de reserva directa - Casa Bela Cembalo, Atlántida\n\nLlegada: ${fmt(ci)} (${ci})\nSalida: ${fmt(co)} (${co})\nNoches: ${n}\nHuéspedes: ${$("fguests").value}\n\nNombre: ${name}\nTeléfono: ${phone}`+(email?`\nEmail: ${email}`:"")+(msg?`\n\nMensaje: ${msg}`:"");
   $("msgtxt").textContent=text;
   $("wa").href="https://wa.me/16672041266?text="+encodeURIComponent(text);
-  $("mail").href="mailto:casabelacembalo@gmail.com?subject="+encodeURIComponent(`Solicitud de reserva directa Casa Bela Cembalo, Atlántida: ${ci} a ${co}`)+"&body="+encodeURIComponent(text);
+  $("mail").href="mailto:casabelacembalo@gmail.com?subject="+encodeURIComponent(`Solicitud de reserva directa - Casa Bela Cembalo, Atlántida: ${ci} a ${co}`)+"&body="+encodeURIComponent(text);
   $("req").style.display="none";$("done").classList.add("on");document.querySelector(".abnb").style.display="none";
 });
 $("copy").addEventListener("click",async()=>{
