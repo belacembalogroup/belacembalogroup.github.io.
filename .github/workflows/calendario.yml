@@ -1,0 +1,41 @@
+name: Actualizar calendario
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # cada hora
+  workflow_dispatch:        # botón "Run workflow" para correrlo a mano
+
+permissions:
+  contents: write
+
+concurrency:
+  group: calendario
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Descargar iCal de Airbnb
+        env:
+          ICAL_URL: ${{ secrets.AIRBNB_ICAL_URL }}
+        run: |
+          if [ -z "$ICAL_URL" ]; then echo "Falta el secreto AIRBNB_ICAL_URL"; exit 1; fi
+          curl -fsSL --retry 3 --max-time 60 "$ICAL_URL" -o "$RUNNER_TEMP/cal.ics"
+          # Si Airbnb devuelve algo que no es un calendario completo, no se toca la web.
+          grep -q "BEGIN:VCALENDAR" "$RUNNER_TEMP/cal.ics"
+          grep -q "END:VCALENDAR" "$RUNNER_TEMP/cal.ics"
+
+      - name: Generar calendario.js
+        run: python3 tools/actualizar_calendario.py "$RUNNER_TEMP/cal.ics"
+
+      - name: Publicar
+        run: |
+          git config user.name "Calendario CBC"
+          git config user.email "actions@users.noreply.github.com"
+          git add atlantida/calendario.js
+          git diff --cached --quiet && exit 0
+          git commit -m "Calendario actualizado (automático)"
+          git push
