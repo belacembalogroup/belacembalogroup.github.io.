@@ -440,7 +440,7 @@ function month(m){
   for(let i=1;i<=len;i++){
     const k=y+"-"+pad(mo+1)+"-"+pad(i);
     let c="day",dis=false,lab=T("libre");
-    if(k<today||k>LAST){c+=" past";dis=true;lab=T("no disponible")}
+    if(k<=today||k>LAST){c+=" past";dis=true;lab=T("no disponible")}
     else if(co&&k===co){lab=T("tu salida")}
     else if(busy.has(k)){
       if(ci&&!co&&k>ci&&freeRange(ci,k)){c+=" co";lab=T("libre para salida")}
