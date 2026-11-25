@@ -14,6 +14,7 @@ function doPost(e) {
   const cuerpo = [
     'Solicitud de reserva directa - Casa Bela Cembalo, Atlántida',
     'Canal elegido por el huésped: ' + (t(p.canal) || '-'),
+    'Idioma: ' + ({ es: 'Español', en: 'English', pt: 'Português' }[t(p.idioma)] || 'Español'),
     '',
     'Llegada: ' + ci,
     'Salida: ' + co,
