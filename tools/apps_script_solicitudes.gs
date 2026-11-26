@@ -25,6 +25,8 @@ function doPost(e) {
     'Teléfono: ' + tel,
     'Email: ' + (email || '-'),
     '',
+    t(p.precio) || 'Precio estimado: a confirmar',
+    '',
     'Mensaje: ' + (t(p.mensaje) || '-'),
     '',
     'Enviado desde belacembalogroup.com/atlantida'
