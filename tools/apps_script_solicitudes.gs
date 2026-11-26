@@ -25,7 +25,7 @@ function doPost(e) {
     'Teléfono: ' + tel,
     'Email: ' + (email || '-'),
     '',
-    t(p.precio) || 'Precio estimado: a confirmar',
+    t(p.precio) || 'Precio noches: a confirmar',
     '',
     'Mensaje: ' + (t(p.mensaje) || '-'),
     '',

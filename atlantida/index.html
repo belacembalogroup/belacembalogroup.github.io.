@@ -515,7 +515,7 @@ $("req").addEventListener("submit",e=>{
   const n=Math.round((parse(co)-parse(ci))/864e5);
   const email=$("femail").value.trim(),msg=$("fmsg").value.trim();
   text=`Solicitud de reserva directa - Casa Bela Cembalo, Atlántida\n\nLlegada: ${fmtES(ci)} (${ci})\nSalida: ${fmtES(co)} (${co})\nNoches: ${n}\nHuéspedes: ${$("fguests").value}\n\nNombre: ${name}\nTeléfono: ${phone}`+(email?`\nEmail: ${email}`:"")+(msg?`\n\nMensaje: ${msg}`:"")+(LANG!=="es"?`\nIdioma del huésped: ${LANG==="en"?"inglés":"portugués"}`:"");
-  const qq=quote(ci,co);const ptxt=qq?`Precio estimado (web, 10% reserva directa): ${qq.n} noches US$ ${qq.base} - descuento US$ ${qq.disc} + limpieza US$ ${CLEAN} = total US$ ${qq.total} (seña 50%: US$ ${qq.sena})`:"Precio estimado: a confirmar (sin precio cargado para esas fechas)";
+  const qq=quote(ci,co);const ptxt=qq?`Precio noches (web, con 10% de descuento): US$ ${qq.net} por ${qq.n} ${qq.n===1?"noche":"noches"}`:"Precio noches: a confirmar";
   text+=`\n\n${ptxt}`;
   DATA={ci,co,noches:String(n),huespedes:$("fguests").value,nombre:name,tel:phone,email,mensaje:msg,precio:ptxt,idioma:LANG,web:$("fweb")?$("fweb").value:""};
   $("msgtxt").textContent=text;
